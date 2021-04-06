@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/filmsListFragment"
+        android:icon="@drawable/ic_baseline_home_24"
+        android:title="Главная">
+    </item>
+    <item
+        android:id="@+id/statisticFragment"
+        android:icon="@drawable/ic_baseline_event_note_24"
+        android:title="Моменты">
+    </item>
+
+</menu>
