@@ -10,11 +10,11 @@ interface MomentDao {
     fun getAllMoments(): Flow<List<Moment>>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun insert(film: Moment)
+    suspend fun insert(moment: Moment)
 
     @Update
-    suspend fun update(film: Moment)
+    suspend fun update(moment: Moment)
 
     @Delete
-    suspend fun delete(film: Moment)
+    suspend fun delete(moment: Moment)
 }

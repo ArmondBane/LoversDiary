@@ -1,5 +1,6 @@
 package com.example.loversdiary.data
 
+import android.os.Parcelable
 import androidx.room.Entity
 import androidx.room.ForeignKey
 import androidx.room.PrimaryKey
@@ -13,4 +14,4 @@ data class Moment (
     val date: Long = System.currentTimeMillis(),
     val note: String = "",
     val event_id: Int = 0
-)
+) : Parcelable {}

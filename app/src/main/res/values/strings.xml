@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">LoversDiary</string>
+    <string name="app_name">Любовный дневник</string>
     <string name="home_frg_self_name">Self name</string>
     <string name="home_frg_and">&amp;</string>
     <string name="home_frg_partner_name">Partner name</string>

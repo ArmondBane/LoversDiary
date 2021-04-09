@@ -20,17 +20,20 @@ object AppModule {
     @Provides
     @Singleton
     fun provideDatabase(app: Application, callback: LoversDiaryDatabase.Callback)
-            = Room.databaseBuilder(app, LoversDiaryDatabase::class.java, "movie_diary_database")
+            = Room.databaseBuilder(app, LoversDiaryDatabase::class.java, "love_diary_database")
         .allowMainThreadQueries()
         .fallbackToDestructiveMigration()
         .addCallback(callback)
         .build()
 
     @Provides
-    fun provideFilmDao(db: LoversDiaryDatabase) = db.filmDao()
+    fun provideUserDao(db: LoversDiaryDatabase) = db.userDao()
 
     @Provides
-    fun provideProducerDao(db: LoversDiaryDatabase) = db.producerDao()
+    fun provideMomentDao(db: LoversDiaryDatabase) = db.momentDao()
+
+    @Provides
+    fun provideEventDao(db: LoversDiaryDatabase) = db.eventDao()
 
     @ApplicationScope
     @Provides

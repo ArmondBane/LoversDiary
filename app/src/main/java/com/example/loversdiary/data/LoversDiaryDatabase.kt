@@ -14,15 +14,17 @@ import javax.inject.Inject
 import javax.inject.Provider
 
 @Database(entities = [User::class, Moment::class, Photo::class, Event::class], version = 1)
+@TypeConverters(Converters::class)
 abstract class LoversDiaryDatabase: RoomDatabase() {
 
     abstract fun momentDao(): MomentDao
     abstract fun eventDao(): EventDao
+    abstract fun userDao(): UserDao
+    abstract fun photoDao(): PhotoDao
 
     class Callback @Inject constructor(
         private val database: Provider<LoversDiaryDatabase>,
         @ApplicationScope private val applicationScope: CoroutineScope,
-        private val appContext: Provider<Context>,
     ) : RoomDatabase.Callback() {
 
         @RequiresApi(Build.VERSION_CODES.O)
@@ -31,6 +33,8 @@ abstract class LoversDiaryDatabase: RoomDatabase() {
 
             val momentDao = database.get().momentDao()
             val eventDao = database.get().eventDao()
+            val userDao = database.get().userDao()
+            val photoDao = database.get().photoDao()
 
             applicationScope.launch {
             }

@@ -1,6 +1,7 @@
 package com.example.loversdiary.ui
 
 import android.os.Bundle
+import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
@@ -33,6 +34,14 @@ class MainActivity : AppCompatActivity(){
         setupActionBarWithNavController(navController, appBarConfiguration)
 
         bottom_nav.setupWithNavController(navController)
+
+        navController.addOnDestinationChangedListener { _, destination, _ ->
+            when (destination.id)   {
+                R.id.splashFragment -> bottom_nav.visibility = View.GONE
+                R.id.viewPagerFragment -> bottom_nav.visibility = View.GONE
+                else -> bottom_nav.visibility = View.VISIBLE
+            }
+        }
     }
 
     override fun onSupportNavigateUp(): Boolean {

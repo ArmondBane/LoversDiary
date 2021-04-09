@@ -13,11 +13,11 @@ interface EventDao {
     fun getAllEvents(): Flow<List<Event>>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun insert(film: Event)
+    suspend fun insert(event: Event)
 
     @Update
-    suspend fun update(film: Event)
+    suspend fun update(event: Event)
 
     @Delete
-    suspend fun delete(film: Event)
+    suspend fun delete(event: Event)
 }
