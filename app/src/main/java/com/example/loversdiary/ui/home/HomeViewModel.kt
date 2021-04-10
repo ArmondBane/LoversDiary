@@ -8,6 +8,8 @@ import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.asLiveData
 import androidx.lifecycle.viewModelScope
+import com.example.loversdiary.data.EventDao
+import com.example.loversdiary.data.MomentDao
 import com.example.loversdiary.data.UserDao
 import com.example.loversdiary.ui.EDIT_SETTINGS_RESULT_OK
 import kotlinx.coroutines.channels.Channel
@@ -24,13 +26,19 @@ import kotlin.time.ExperimentalTime
 import kotlin.time.days
 
 class HomeViewModel @ViewModelInject constructor(
-    userDao: UserDao
+    userDao: UserDao,
+    momentDao: MomentDao,
+    private val eventDao: EventDao
 )  : ViewModel() {
 
     val user = userDao.getUser().asLiveData()
 
+    val moment = momentDao.getClosestMoment().asLiveData()
+
     private val homeEventChannel = Channel<HomeEvent>()
     val homeEvent = homeEventChannel.receiveAsFlow()
+
+    fun getEventByMoment(id: Int) = eventDao.getEventById(id)
 
     fun onSettingsResult(result: Int) {
         when (result) {

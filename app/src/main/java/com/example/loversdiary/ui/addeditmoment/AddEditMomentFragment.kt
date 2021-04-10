@@ -69,7 +69,7 @@ class AddEditMomentFragment : Fragment(R.layout.add_edit_moment_fragment) {
             addEditMomentDateView.setOnClickListener {
                 DatePickerDialog(requireContext(), dateSetListener,
                         addEditMomentViewModel.dateYear,
-                        addEditMomentViewModel.dateMonth-1,
+                        addEditMomentViewModel.dateMonth,
                         addEditMomentViewModel.dateDay).show()
             }
 

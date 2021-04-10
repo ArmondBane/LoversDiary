@@ -34,7 +34,9 @@ class StatisticFragment : Fragment(R.layout.statistic_fragment) {
                 setHasFixedSize(true)
             }
 
-            statisticFrgSpinner.setSelection(0)
+            statisticViewModel.spinnerChoice.observe(viewLifecycleOwner) {
+                statisticFrgSpinner.setSelection(it.spinnerChoice.ordinal)
+            }
 
             statisticFrgSpinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
                 override fun onItemSelected(parent: AdapterView<*>?, itemSelected: View?, selectedItemPosition: Int, selectedId: Long) {

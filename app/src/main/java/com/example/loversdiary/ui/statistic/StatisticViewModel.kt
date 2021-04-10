@@ -22,7 +22,7 @@ class StatisticViewModel  @ViewModelInject constructor(
 
     private val preferencesFlow = preferencesManager.preferencesFlow
 
-    private val spinnerChoice = preferencesFlow.asLiveData()
+    val spinnerChoice = preferencesFlow.asLiveData()
 
     val eventsList = spinnerChoice.asFlow().flatMapLatest { choice ->
         eventDao.getEventsStatistic(

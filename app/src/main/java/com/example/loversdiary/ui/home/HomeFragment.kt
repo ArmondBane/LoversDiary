@@ -1,6 +1,7 @@
 package com.example.loversdiary.ui.home
 
 import android.content.Context
+import android.opengl.Visibility
 import android.os.Binder
 import android.os.Build
 import android.os.Bundle
@@ -21,16 +22,17 @@ import com.example.loversdiary.util.exhaustive
 import com.google.android.material.snackbar.Snackbar
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collect
-import java.time.Instant
-import java.time.LocalDate
-import java.time.Period
-import java.time.ZoneId
+import java.time.*
+import java.util.concurrent.TimeUnit
+import kotlin.time.ExperimentalTime
+import kotlin.time.days
 
 @AndroidEntryPoint
 class HomeFragment : Fragment(R.layout.home_fragment) {
 
     private val homeViewModel: HomeViewModel by viewModels()
 
+    @ExperimentalTime
     @RequiresApi(Build.VERSION_CODES.O)
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -80,6 +82,43 @@ class HomeFragment : Fragment(R.layout.home_fragment) {
                     else -> (" года")
                 }
                 homeFrgYearsView.text = yearsText
+            }
+
+            homeViewModel.moment.observe(viewLifecycleOwner) {
+                if (it != null) {
+
+                    homeFrgMomentItem.visibility = View.VISIBLE
+
+                    momentItemPlaceView.text = it.place
+                    momentItemEventView.text = homeViewModel.getEventByMoment(it.event_id).name
+                    momentItemDateView.text = it.dateFormatted
+
+                    val year = 3.154e+10.toLong()
+                    val days = TimeUnit.MILLISECONDS.toDays(
+                            ((it.date - System.currentTimeMillis()) % year) + year
+                    ).days.inDays.toInt()
+
+                    val timeLeftText = "До ближайшей годовщины " +
+                            days.toString() +
+                            when (days % 100) {
+                                1 -> " день"
+                                in 5..20 -> " дней"
+                                21 -> " день"
+                                31 -> " день"
+                                41 -> " день"
+                                51 -> " день"
+                                61 -> " день"
+                                71 -> " день"
+                                81 -> " день"
+                                91 -> " день"
+                                else -> (" дня")
+                            }
+                    homeFrgTimeLeftView.text = timeLeftText
+                }
+                else {
+                    homeFrgTimeLeftView.text = "У вас нету моментов"
+                    homeFrgMomentItem.visibility = View.GONE
+                }
             }
         }
 
