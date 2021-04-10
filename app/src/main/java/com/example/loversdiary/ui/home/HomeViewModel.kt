@@ -34,11 +34,11 @@ class HomeViewModel @ViewModelInject constructor(
 
     fun onSettingsResult(result: Int) {
         when (result) {
-            EDIT_SETTINGS_RESULT_OK -> showFilmSavedConfirmationMessage("Настройки успешно сохранены")
+            EDIT_SETTINGS_RESULT_OK -> showSettingsSavedConfirmationMessage("Настройки успешно сохранены")
         }
     }
 
-    private fun showFilmSavedConfirmationMessage(text: String) = viewModelScope.launch {
+    private fun showSettingsSavedConfirmationMessage(text: String) = viewModelScope.launch {
         homeEventChannel.send(HomeEvent.ShowSettingsSavedConfirmationMessage(text))
     }
 

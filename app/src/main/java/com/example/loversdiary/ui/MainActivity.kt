@@ -51,3 +51,6 @@ class MainActivity : AppCompatActivity() {
 }
 
 const val EDIT_SETTINGS_RESULT_OK = Activity.RESULT_FIRST_USER
+const val ADD_MOMENT_RESULT_OK = Activity.RESULT_FIRST_USER + 1
+const val EDIT_MOMENT_RESULT_OK = Activity.RESULT_FIRST_USER + 2
+const val DELETE_MOMENT_RESULT_OK = Activity.RESULT_FIRST_USER + 3

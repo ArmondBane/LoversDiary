@@ -63,15 +63,11 @@ class ViewPagerViewModel @ViewModelInject constructor(
 
     private fun createUser(user: User) = viewModelScope.launch {
         userDao.insert(user)
-        finishViewPager()
+        viewPagerEventChannel.send(ViewPagerEvent.FinishBoarding)
     }
 
     private fun navigateToNextScreen() = viewModelScope.launch {
         viewPagerEventChannel.send(ViewPagerEvent.NavigateToNextScreen)
-    }
-
-    private fun finishViewPager() = viewModelScope.launch {
-        viewPagerEventChannel.send(ViewPagerEvent.FinishBoarding)
     }
 
     private fun showInvalidInputMessage(text: String) = viewModelScope.launch {

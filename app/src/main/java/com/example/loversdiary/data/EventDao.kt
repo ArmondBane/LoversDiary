@@ -6,11 +6,11 @@ import kotlinx.coroutines.flow.Flow
 @Dao
 interface EventDao {
 
-    @Query("SELECT * FROM events WHERE id=:momentId")
-    fun getEventsByMomentId(momentId: Int): List<Event>
+    @Query("SELECT e.id, e.name FROM moments m, events e WHERE m.event_id=e.id")
+    fun getEventsByMoments():  Flow<List<Event>>
 
     @Query("SELECT * FROM events")
-    fun getAllEvents(): Flow<List<Event>>
+    fun getAllEvents(): List<Event>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insert(event: Event)

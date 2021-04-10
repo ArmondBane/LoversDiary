@@ -46,4 +46,33 @@
         android:name="com.example.loversdiary.ui.settings.SettingsFragment"
         android:label="Настройки"
         tools:layout="@layout/settings_fragment"/>
+    <fragment
+        android:id="@+id/momentsListFragment"
+        android:name="com.example.loversdiary.ui.momentslist.MomentsListFragment"
+        android:label="Моменты"
+        tools:layout="@layout/moments_list_fragment" >
+        <action
+            android:id="@+id/action_momentsListFragment_to_addEditMomentFragment"
+            app:destination="@id/addEditMomentFragment" />
+
+    </fragment>
+    <fragment
+        android:id="@+id/addEditMomentFragment"
+        android:name="com.example.loversdiary.ui.addeditmoment.AddEditMomentFragment"
+        android:label="{fragment_title}"
+        tools:layout="@layout/add_edit_moment_fragment">
+        <argument
+            android:name="moment"
+            app:argType="com.example.loversdiary.data.Moment"
+            app:nullable="true"
+            android:defaultValue="@null" />
+        <argument
+            android:name="event"
+            app:argType="com.example.loversdiary.data.Event"
+            app:nullable="true"
+            android:defaultValue="@null" />
+        <argument
+            android:name="fragment_title"
+            app:argType="string" />
+    </fragment>
 </navigation>

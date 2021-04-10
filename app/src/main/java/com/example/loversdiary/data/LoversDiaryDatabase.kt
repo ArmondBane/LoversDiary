@@ -10,6 +10,8 @@ import androidx.sqlite.db.SupportSQLiteDatabase
 import com.example.loversdiary.di.ApplicationScope
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
+import java.time.LocalDateTime
+import java.time.ZoneId
 import javax.inject.Inject
 import javax.inject.Provider
 
@@ -37,6 +39,48 @@ abstract class LoversDiaryDatabase: RoomDatabase() {
             val photoDao = database.get().photoDao()
 
             applicationScope.launch {
+                eventDao.insert(Event(
+                        name = "Свидание",
+                ))
+                eventDao.insert(Event(
+                        name = "Кино",
+                ))
+                eventDao.insert(Event(
+                        name = "Театр",
+                ))
+                eventDao.insert(Event(
+                        name = "Путешествия",
+                ))
+                eventDao.insert(Event(
+                        name = "Сюрприз",
+                ))
+                eventDao.insert(Event(
+                        name = "Цветы",
+                ))
+                momentDao.insert(Moment(
+                        place = "Ё-бар",
+                        note = "Я увидел тебя танцующей под Минимал Л.Джея, это было что то с чем то...",
+                        event_id = 1,
+                        date = LocalDateTime.of(
+                                2021,
+                                4,
+                                8,
+                                0,
+                                0,
+                                0).atZone(ZoneId.systemDefault()).toInstant().toEpochMilli()
+                ))
+                momentDao.insert(Moment(
+                        place = "Cuba Libre",
+                        note = "Я тебя споил и затанцевал. И тут ты меня поцеловала в первый раз...",
+                        event_id = 5,
+                        date = LocalDateTime.of(
+                                2021,
+                                4,
+                                9,
+                                0,
+                                0,
+                                0).atZone(ZoneId.systemDefault()).toInstant().toEpochMilli()
+                ))
             }
         }
     }
