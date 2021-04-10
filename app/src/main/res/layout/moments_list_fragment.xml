@@ -8,14 +8,14 @@
     android:id="@+id/momentsListFragment">
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/filmsList"
+        android:id="@+id/momentsListFrgList"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:padding="20dp"
         tools:listitem="@layout/moment_item_fragment" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/fab_add_list"
+        android:id="@+id/fab_add"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|end"
