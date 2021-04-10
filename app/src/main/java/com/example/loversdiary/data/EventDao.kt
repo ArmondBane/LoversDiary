@@ -6,6 +6,9 @@ import kotlinx.coroutines.flow.Flow
 @Dao
 interface EventDao {
 
+    @Query("SELECT e.name AS name, COUNT(m.id) AS count FROM moments m, events e WHERE m.event_id = e.id AND m.date >= :time GROUP BY e.name")
+    fun getEventsStatistic(time: Long):  Flow<List<EventStatisticQuery>>
+
     @Query("SELECT e.id, e.name FROM moments m, events e WHERE m.event_id=e.id")
     fun getEventsByMoments():  Flow<List<Event>>
 

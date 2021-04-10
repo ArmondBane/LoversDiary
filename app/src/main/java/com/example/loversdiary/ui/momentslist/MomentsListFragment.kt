@@ -87,7 +87,7 @@ class MomentsListFragment : Fragment(R.layout.moments_list_fragment), OnItemClic
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when (item.itemId) {
             R.id.action_redirect_to_statistic -> {
-
+                findNavController().navigate(R.id.action_momentsListFragment_to_statisticFragment)
                 true
             }
             else -> super.onOptionsItemSelected(item)

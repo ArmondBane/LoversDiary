@@ -108,8 +108,7 @@ class HomeFragment : Fragment(R.layout.home_fragment) {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when (item.itemId) {
             R.id.action_redirect_to_settings -> {
-                val action = HomeFragmentDirections.actionHomeFragmentToSettingsFragment()
-                findNavController().navigate(action)
+                findNavController().navigate(R.id.action_homeFragment_to_settingsFragment)
                 true
             }
             else -> super.onOptionsItemSelected(item)

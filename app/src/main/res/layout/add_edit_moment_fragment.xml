@@ -90,7 +90,7 @@
                 android:ems="10"
                 android:inputType="textMultiLine"
                 android:hint="Введите ваш текст"
-                android:lines="20"
+                android:lines="15"
                 android:gravity="top|left"
                 android:textAlignment="inherit"
                 android:background="@color/white"/>

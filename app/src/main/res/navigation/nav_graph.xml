@@ -54,6 +54,9 @@
         <action
             android:id="@+id/action_momentsListFragment_to_addEditMomentFragment"
             app:destination="@id/addEditMomentFragment" />
+        <action
+            android:id="@+id/action_momentsListFragment_to_statisticFragment"
+            app:destination="@id/statisticFragment" />
 
     </fragment>
     <fragment
@@ -75,4 +78,9 @@
             android:name="fragment_title"
             app:argType="string" />
     </fragment>
+    <fragment
+        android:id="@+id/statisticFragment"
+        android:name="com.example.loversdiary.ui.statistic.StatisticFragment"
+        android:label="Статистика"
+        tools:layout="@layout/statistic_fragment" />
 </navigation>
