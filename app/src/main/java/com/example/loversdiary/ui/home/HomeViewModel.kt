@@ -1,5 +1,6 @@
 package com.example.loversdiary.ui.home
 
+import android.net.Uri
 import android.os.Build
 import androidx.annotation.RequiresApi
 import androidx.hilt.Assisted
@@ -8,9 +9,7 @@ import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.asLiveData
 import androidx.lifecycle.viewModelScope
-import com.example.loversdiary.data.EventDao
-import com.example.loversdiary.data.MomentDao
-import com.example.loversdiary.data.UserDao
+import com.example.loversdiary.data.*
 import com.example.loversdiary.ui.EDIT_SETTINGS_RESULT_OK
 import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.flow.receiveAsFlow
@@ -28,8 +27,11 @@ import kotlin.time.days
 class HomeViewModel @ViewModelInject constructor(
     userDao: UserDao,
     momentDao: MomentDao,
+    private val photoDao: PhotoDao,
     private val eventDao: EventDao
 )  : ViewModel() {
+
+    val photos = photoDao.getAllPhotos().asLiveData()
 
     val user = userDao.getUser().asLiveData()
 
@@ -48,6 +50,16 @@ class HomeViewModel @ViewModelInject constructor(
 
     private fun showSettingsSavedConfirmationMessage(text: String) = viewModelScope.launch {
         homeEventChannel.send(HomeEvent.ShowSettingsSavedConfirmationMessage(text))
+    }
+
+    private fun createPhoto(photo: Photo) = viewModelScope.launch {
+        photoDao.insert(photo)
+        showSettingsSavedConfirmationMessage("Фото успешно добавлено")
+    }
+
+    fun onChoosePhotoFromGallery(bitmapUri: Uri) {
+        val newPhoto = Photo(uri = bitmapUri)
+        createPhoto(newPhoto)
     }
 
     sealed class HomeEvent {

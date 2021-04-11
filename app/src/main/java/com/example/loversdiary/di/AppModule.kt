@@ -35,6 +35,9 @@ object AppModule {
     @Provides
     fun provideEventDao(db: LoversDiaryDatabase) = db.eventDao()
 
+    @Provides
+    fun providePhotoDao(db: LoversDiaryDatabase) = db.photoDao()
+
     @ApplicationScope
     @Provides
     @Singleton
