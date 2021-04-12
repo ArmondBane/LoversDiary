@@ -27,10 +27,11 @@ import androidx.recyclerview.widget.GridLayoutManager
 import com.example.loversdiary.R
 import com.example.loversdiary.databinding.HomeFragmentBinding
 import com.example.loversdiary.ui.PERMISSION_CODE
-import com.example.loversdiary.util.NpaLinerLayoutManager
+import com.example.loversdiary.util.NSGridLayoutManager
 import com.example.loversdiary.util.exhaustive
 import com.google.android.material.snackbar.Snackbar
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.android.synthetic.main.home_fragment.*
 import kotlinx.coroutines.flow.collect
 import java.time.*
 import java.util.concurrent.TimeUnit
@@ -55,8 +56,7 @@ class HomeFragment : Fragment(R.layout.home_fragment) {
 
             homeFrgImagesList.apply {
                 adapter = photoAdapter
-                //layoutManager = NpaLinerLayoutManager(requireContext())
-                layoutManager = GridLayoutManager(requireContext(), 2)
+                layoutManager = NSGridLayoutManager(requireContext(), 2)
                 setHasFixedSize(true)
             }
 

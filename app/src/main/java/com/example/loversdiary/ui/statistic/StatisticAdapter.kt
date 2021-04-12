@@ -1,5 +1,6 @@
 package com.example.loversdiary.ui.statistic
 
+import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
@@ -37,6 +38,7 @@ class StatisticAdapter
     }
 
     class DiffCallback : DiffUtil.ItemCallback<EventStatisticQuery>() {
+
         override fun areItemsTheSame(oldItem: EventStatisticQuery, newItem: EventStatisticQuery) =
                 oldItem == newItem
 
